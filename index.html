@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Kelas IX H</title>
+    <!-- Google Fonts untuk tampilan font yang modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================================
+           1. VARIABEL WARNA & RESET CSS
+           ========================================================= */
+        :root {
+            /* Tema Warna: Biru Samudera, Biru Laut, & Putih */
+            --primary-dark: #004080;   /* Biru Samudera / Biru Tua */
+            --primary-medium: #0066cc; /* Biru Laut */
+            --primary-light: #e6f2ff;  /* Biru Sangat Muda (Highlight) */
+            --accent-blue: #0099ff;    /* Biru Cerah */
+            --white: #ffffff;          /* Putih Bersih */
+            --text-color: #2c3e50;     /* Warna Teks Utam (Gelap) */
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Efek Bayangan Halus */
+            --radius: 15px;            /* Lengkungan Sudut Kartu */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f8fb;
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* =========================================================
+           2. NAVIGASI BAR (NAVBAR)
+           ========================================================= */
+        .navbar {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 20px;
+            /* Efek Transisi Warna Halus */
+            transition: all 0.3s ease;
+        }
+
+        /* Efek Hover Navigasi Berubah Warna Halus */
+        .navbar a:hover {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* =========================================================
+           3. HERO BANNER & ANIMASI GELEMBUNG (BUBBLES)
+           ========================================================= */
+        .hero-banner {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px 80px 20px;
+            overflow: hidden; /* Menjaga gelembung tetap di dalam banner */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Agar teks & foto berada di atas gelembung */
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-slogan {
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            color: var(--primary-light);
+        }
+
+        /* Foto Kelas Responsif dengan Sudut Melengkung & Bayangan */
+        .class-photo-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            border: 5px solid var(--white);
+        }
+
+        .class-photo-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        /* Efek Zoom Halus Saat Foto Didekati Cursor */
+        .class-photo-wrapper img:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- ANIMASI GELEMBUNG AIR MURNI CSS --- */
+        .bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: floatUp 8s infinite ease-in;
+        }
+
+        /* Variasi ukuran dan posisi gelembung */
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 7s; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 20%; animation-duration: 9s; animation-delay: 1s; }
+        .bubble:nth-child(3) { width: 50px; height: 50px; left: 35%; animation-duration: 6s; animation-delay: 3s; }
+        .bubble:nth-child(4) { width: 15px; height: 15px; left: 50%; animation-duration: 11s; animation-delay: 0s; }
+        .bubble:nth-child(5) { width: 35px; height: 35px; left: 65%; animation-duration: 8s; animation-delay: 2s; }
+        .bubble:nth-child(6) { width: 25px; height: 25px; left: 80%; animation-duration: 10s; animation-delay: 4s; }
+        .bubble:nth-child(7) { width: 45px; height: 45px; left: 90%; animation-duration: 7.5s; animation-delay: 1s; }
+
+        /* Keyframes Gerakan Gelembung Melayang ke Atas */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-600px) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* =========================================================
+           4. KONTEN UTAMA & STYLING SECTION
+           ========================================================= */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-medium);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* =========================================================
+           5. BAGIAN STRUKTUR ORGANISASI (KARTU & TEKS)
+           ========================================================= */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Kotak Informasi dengan Bayangan Halus & Sudut Melengkung */
+        .org-card {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 4px solid var(--primary-medium);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .org-role {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-medium);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .org-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-top: 5px;
+        }
+
+        /* Kartu Khusus Wali Kelas di Bagian Atas */
+        .org-card.wali-kelas {
+            grid-column: 1 / -1;
+            background: linear-gradient(to right, #ffffff, var(--primary-light));
+            border-top: 4px solid var(--primary-dark);
+        }
+
+        /* =========================================================
+           6. BAGIAN JADWAL PELAJARAN (TABEL RESPONSIIF)
+           ========================================================= */
+        .schedule-table-wrapper {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow-x: auto; /* Agar tabel bisa di-swipe di layar HP kecil */
+            padding: 10px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 600px; /* Menjaga ukuran minimum tabel */
+        }
+
+        .schedule-table th {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eef2f5;
+        }
+
+        /* Baris Selang-Seling Warna Halus */
+        .schedule-table tr:nth-child(even) {
+            background-color: #f8fbfe;
+        }
+
+        .schedule-table tr:hover {
+            background-color: var(--primary-light);
+        }
+
+        .day-column {
+            font-weight: 600;
+            color: var(--primary-medium);
+            width: 15%;
+        }
+
+        /* =========================================================
+           7. FOOTER (BAGIAN BAWAH)
+           ========================================================= */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 60px;
+            font-size: 0.95rem;
+        }
+
+        /* =========================================================
+           8. RESPONSIVE DESIGN (PENYESUAIAN LAYAR HP)
+           ========================================================= */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-slogan {
+                font-size: 1rem;
+            }
+            .navbar ul {
+                gap: 10px;
+            }
+            .navbar a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================================
+         NAVIGASI BAR
+         ========================================================= -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#struktur">Struktur Organisasi</a></li>
+            <li><a href="#jadwal">Jadwal Pelajaran</a></li>
+        </ul>
+    </nav>
+
+    <!-- =========================================================
+         HERO BANNER (NAMA KELAS, SLOGAN, GELEMBUNG, & FOTO KELAS)
+         ========================================================= -->
+    <header class="hero-banner" id="beranda">
+        <!-- Efek Gelembung Air Bergerak (CSS Animation) -->
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+
+        <div class="hero-content">
+            <!-- EDIT EDIT NAMA KELAS & SLOGAN DI SINI -->
+            <h1 class="hero-title">IX H</h1>
+            <p class="hero-slogan">Kreatif, Kompak, dan Berprestasi</p>
+            
+            <!-- FOTO KELAS RESPONSIVE -->
+            <div class="class-photo-wrapper">
+                <!-- Ubah "fotokelas.jpg" sesuai dengan nama file foto Anda -->
+                <img src="fotokelas.jpg" alt="foto kelas">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- =========================================================
+             SECTION: STRUKTUR ORGANISASI KELAS (TEKS BIAAS)
+             ========================================================= -->
+        <section id="struktur" style="margin-bottom: 60px;">
+            <h2 class="section-title">Struktur Organisasi</h2>
+            
+            <div class="structure-grid">
+                
+                <!-- EDIT DUKUNGAN PENGURUS KELAS DI SINI -->
+                <!-- Wali Kelas -->
+                <div class="org-card wali-kelas">
+                    <div class="org-role">Wali Kelas</div>
+                    <div class="org-name">Bapak Atam Maulana S.Pd.</div>
+                </div>
+
+                <!-- Ketua Kelas -->
+                <div class="org-card">
+                    <div class="org-role">Ketua Kelas</div>
+                    <div class="org-name">Sultan Cahyadi Reza</div>
+                </div>
+
+                <!-- Wakil Ketua Kelas -->
+                <div class="org-card">
+                    <div class="org-role">Wakil Ketua</div>
+                    <div class="org-name">Dzaky Azka Abudzar Al-Ghifari</div>
+                </div>
+
+                <!-- Sekretaris -->
+                <div class="org-card">
+                    <div class="org-role">Sekretaris</div>
+                    <div class="org-name">Putri Miranda<br>Elin Herlina</div>
+                </div>
+
+                <!-- Bendahara -->
+                <div class="org-card">
+                    <div class="org-role">Bendahara</div>
+                    <div class="org-name">Nabila Amelia Haryanto<br>Naylla Azzahra</div>
+                </div>
+
+                <!-- Keamanan -->
+                <div class="org-card">
+                    <div class="org-role">Keamanan</div>
+                    <div class="org-name">Fauzi Mubarok<br>Rizky Nugraha<br>Adwa Khudafa</div>
+                </div>
+
+                <!-- Absensi -->
+                <div class="org-card">
+                    <div class="org-role">Absensi</div>
+                    <div class="org-name">Intan Nuraini</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =========================================================
+             SECTION: JADWAL PELAJARAN (SENIN - JUMAT)
+             ========================================================= -->
+        <section id="jadwal">
+            <h2 class="section-title">Jadwal Pelajaran</h2>
+            
+            <div class="schedule-table-wrapper">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Mata Pelajaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- EDIT JADWAL PELAJARAN DI SINI -->
+                        <tr>
+                            <td class="day-column">Senin</td>
+                            <td>Prakarya, IPA, Bahasa Indonesia, Informatika</td>
+                        </tr>
+                        <tr>
+                            <td class="day-column">Selasa</td>
+                            <td>Matematika, PJOK, Bahasa Indonesia</td>
+                        </tr>
+                        <tr>
+                            <td class="day-column">Rabu</td>
+                            <td>PKn, Pendidikan Agama, Bahasa Inggris</td>
+                        </tr>
+                        <tr>
+                            <td class="day-column">Kamis</td>
+                            <td>Matematika, Bahasa Sunda, IPS, IPA</td>
+                        </tr>
+                        <tr>
+                            <td class="day-column">Jumat</td>
+                            <td>Kokurikuler</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         FOOTER (PEMBUAT WEBSITE)
+         ========================================================= -->
+    <footer>
+        <p>dibuat oleh Dzaky Azka Abudzar Al-Ghifari</p>
+    </footer>
+
+</body>
+</html>
